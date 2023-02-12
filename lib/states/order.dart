@@ -1,0 +1,27 @@
+
+
+
+import 'cart_state.dart';
+
+class Order{
+  final int amount;
+  final String userId;
+  final List<CartItem> products;
+  final String dateTime;
+  Order({
+    required this.amount,
+    required this.dateTime,
+    required this.products,
+    required this.userId,
+  });
+
+  factory Order.fromJson(Map<String, dynamic> json){
+    return Order(
+        amount: json['amount'],
+        dateTime: json['dateTime'],
+        products: (json['products'] as List).map((e) => CartItem.fromJson(e)).toList(),
+        userId: json['userId']
+    );
+  }
+
+}
