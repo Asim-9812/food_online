@@ -37,15 +37,15 @@ class CreatePage extends  ConsumerWidget {
     final auth = ref.watch(authProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: Colors.black),
         title: Row(
           children: [
-            Icon(Icons.fireplace_rounded,color: Color(0xFFFFFCB2B),),
-            SizedBox(width: 10.w,),
-            Text('FireChat',style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B) ),),
+
+            Text('Add a Product',style: TextStyle(fontSize: 25.sp, color: Colors.black ),),
           ],
         ),
       ),
@@ -59,12 +59,7 @@ class CreatePage extends  ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Create Page', style: TextStyle(fontSize: 25.sp,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),),
-                SizedBox(
-                  height: 10.h,
-                ),
+
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
@@ -80,6 +75,7 @@ class CreatePage extends  ConsumerWidget {
                           padding: const EdgeInsets.only(
                               top: 20, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
+
                               controller: titleController,
                               validator: (val){
                                 if(val!.isEmpty){
@@ -87,7 +83,7 @@ class CreatePage extends  ConsumerWidget {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -109,6 +105,7 @@ class CreatePage extends  ConsumerWidget {
                           padding: const EdgeInsets.only(
                               top: 10, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
+                              style: TextStyle(color: Colors.black),
                               validator: (val){
                                 if(val!.isEmpty){
                                   return 'detail is required';
@@ -139,6 +136,7 @@ class CreatePage extends  ConsumerWidget {
                           padding: const EdgeInsets.only(
                               top: 10, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
+                              style: TextStyle(color: Colors.black),
                               keyboardType: TextInputType.number,
                               validator: (val){
                                 if(val!.isEmpty){
@@ -173,7 +171,7 @@ class CreatePage extends  ConsumerWidget {
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 15),
                             height: 150.h,
-                            width: 250.w,
+                            width: 200.w,
                             color: Colors.white,
                             child: image == null ? Center(child: Text('select an image', style: TextStyle(color: Colors.black),)) : Image.file(File(image.path)),
                           ),
@@ -181,8 +179,8 @@ class CreatePage extends  ConsumerWidget {
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
-                                foregroundColor: Colors.black
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white
                             ),
                             onPressed: () {
                               _form.currentState!.save();

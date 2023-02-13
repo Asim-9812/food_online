@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../providers/auth_provider.dart';
 import '../providers/cart_provider.dart';
@@ -21,61 +22,95 @@ class _CartPageState extends ConsumerState<CartPage> {
     final total = ref.watch(cartProvider.notifier).total;
     final userData = ref.watch(authProvider);
     return Scaffold(
+      backgroundColor: Colors.white,
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: true,
+          title: Text('Cart',style: TextStyle(color: Colors.black),),
+        ),
         body: SafeArea(
             child: cartData.isEmpty ? Center(child: Text('Add Some Product To cart')):
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   Expanded(
                       child: ListView.builder(
                           itemCount: cartData.length,
                           itemBuilder:(context, index){
                             final cart = cartData[index];
-                            return Column(
-                              children: [
-                                CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage: NetworkImage(cart.productImage)),
-                                Spacer(),
-                                Container(
-                                  height: 200,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                          top: 0,
-                                          right: 0,
-                                          child: IconButton(onPressed: (){
-                                            ref.read(cartProvider.notifier).removeFromCart(cart);
-                                          },icon: Icon(Icons.close),)),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 70),
-                                        child: Column(
-                                          children: [
-                                            Text(cart.productName),
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 20),
-                                              child: Text('Rs. ${cart.price}'),
-                                            ),
-                                            Row(
-                                              children: [
-                                                OutlinedButton(onPressed: (){
-                                                  ref.read(cartProvider.notifier).singleAdd(cart);
-                                                }, child: Icon(Icons.add)),
-                                                Text('X  ${cart.quantity}'),
-                                                OutlinedButton(onPressed: (){
-                                                  ref.read(cartProvider.notifier).singleRemove(cart);
-                                                }, child:Icon(Icons.remove)),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      )
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
 
-                                    ],
-                                  ),
-                                )
-                              ],
+                                width: 370.w,
+                                height: 200.h,
+                                child: Column(
+                                  children: [
+
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 60,
+                                            backgroundImage: NetworkImage(cart.productImage)),
+                                        Text(cart.productName,style: TextStyle(color: Colors.black,fontSize: 20.sp,fontWeight: FontWeight.bold),),
+                                        IconButton(onPressed: (){
+                                          ref.read(cartProvider.notifier).removeFromCart(cart);
+                                        },icon: Icon(Icons.close,color: Colors.black,),),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Container(
+                                      // margin: EdgeInsets.only(top: 70),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+
+                                            children: [
+                                              OutlinedButton(
+                                                  style: IconButton.styleFrom(
+                                                    backgroundColor: Colors.red
+                                                  ),
+                                                  onPressed: (){
+                                                ref.read(cartProvider.notifier).singleAdd(cart);
+                                              }, child: Icon(Icons.add,color: Colors.white,)),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                child: Text('X  ${cart.quantity}',style: TextStyle(color: Colors.black),),
+                                              ),
+                                              OutlinedButton(
+                                                  style: IconButton.styleFrom(
+                                                      backgroundColor: Colors.red
+                                                  ),
+                                                  onPressed: (){
+                                                ref.read(cartProvider.notifier).singleRemove(cart);
+                                              }, child:Icon(Icons.remove,color: Colors.white,)),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                                            child: Text('Rs. ${cart.price}',style: TextStyle(color: Colors.black,fontSize: 25.sp),),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 2,
+                                      height: 1,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
                             );
                           }
                       )
@@ -88,12 +123,15 @@ class _CartPageState extends ConsumerState<CartPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Total:-'),
-                            Text('$total')
+                            Text('Total:-',style: TextStyle(color: Colors.black,fontSize: 30.sp),),
+                            Text('$total',style: TextStyle(color: Colors.black,fontSize: 30.sp))
                           ],
                         ),
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red
+                        ),
                           onPressed: () async{
                             setState(() {
                               isLoad = true;

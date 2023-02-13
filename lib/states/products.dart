@@ -6,7 +6,7 @@ class Product{
   final String product_detail;
   final String public_id;
   final String image;
-  final int price;
+  late final int price;
   final String productId;
 
   Product({

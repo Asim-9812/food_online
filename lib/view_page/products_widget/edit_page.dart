@@ -51,21 +51,16 @@ class _EditPageState extends ConsumerState<EditPage> {
     final auth = ref.watch(authProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            Icon(Icons.fireplace_rounded,color: Color(0xFFFFFCB2B),),
-            SizedBox(width: 10.w,),
-            Text('FireChat',style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B) ),),
-          ],
-        ),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text('Customize Product',style: TextStyle(fontSize: 25.sp, color: Colors.black ),),
       ),
 
       body:  Padding(
-        padding:  EdgeInsets.only(top: 70.h),
+        padding:  EdgeInsets.only(top: 30.h),
         child: Form(
           key: _form,
           child: Container(
@@ -73,9 +68,7 @@ class _EditPageState extends ConsumerState<EditPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Create Page', style: TextStyle(fontSize: 25.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),),
+
                 SizedBox(
                   height: 10.h,
                 ),
@@ -101,7 +94,7 @@ class _EditPageState extends ConsumerState<EditPage> {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -132,6 +125,7 @@ class _EditPageState extends ConsumerState<EditPage> {
                                 return null;
                               },
                               controller: detailController,
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -163,6 +157,7 @@ class _EditPageState extends ConsumerState<EditPage> {
                                 return null;
                               },
                               controller: priceController,
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -195,8 +190,8 @@ class _EditPageState extends ConsumerState<EditPage> {
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
-                                foregroundColor: Colors.black
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white
                             ),
                             onPressed: () {
                               _form.currentState!.save();

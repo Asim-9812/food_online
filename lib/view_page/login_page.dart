@@ -34,17 +34,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final auth = ref.watch(authProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            Icon(Icons.fireplace_rounded,color: Color(0xFFFFFCB2B),),
-            SizedBox(width: 10.w,),
-            Text('Sample Shop',style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B) ),),
-          ],
-        ),
+        title: Text('Food Online',style: TextStyle(fontSize: 25.sp, color: Colors.black ),),
       ),
 
       body:  Padding(
@@ -57,7 +51,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('Login Page', style: TextStyle(fontSize: 25.sp,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold),),
                 SizedBox(
                   height: 10.h,
@@ -86,7 +80,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -117,6 +111,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 return null;
                               },
                               obscureText: true,
+                              style: TextStyle(color: Colors.black),
                               controller: passwordController,
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
@@ -137,8 +132,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
-                                foregroundColor: Colors.black
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white
                             ),
                             onPressed: () {
                               _form.currentState!.save();
@@ -158,13 +153,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             Center(child: CircularProgressIndicator(
                               color: Colors.white,
                             )):
-                            Text('Login', style: TextStyle(fontSize: 20.sp),)),
+                            Text('Login', style: TextStyle(fontSize: 20.sp,)),),
 
                         SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Don\'t have an account'),
+                            Text('Don\'t have an account',style: TextStyle(color: Colors.black),),
                             TextButton(onPressed: (){
                               // _form.currentState!.reset();
                               Get.to(() => SignUpPage(), transition: Transition.leftToRight);

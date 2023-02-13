@@ -32,17 +32,11 @@ class SignUpPage extends  ConsumerWidget {
     final auth = ref.watch(authProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            Icon(Icons.fireplace_rounded,color: Color(0xFFFFFCB2B),),
-            SizedBox(width: 10.w,),
-            Text('Sample Shop',style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B) ),),
-          ],
-        ),
+        title: Text('SIGN UP',style: TextStyle(fontSize: 25.sp, color: Colors.black ),),
       ),
 
       body:  Padding(
@@ -54,9 +48,7 @@ class SignUpPage extends  ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('SignUp Page', style: TextStyle(fontSize: 25.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),),
+                
                 SizedBox(
                   height: 10.h,
                 ),
@@ -83,7 +75,7 @@ class SignUpPage extends  ConsumerWidget {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 10),
@@ -105,6 +97,7 @@ class SignUpPage extends  ConsumerWidget {
                           padding: const EdgeInsets.only(
                               top: 20, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
+                              style: TextStyle(color: Colors.black),
                               controller: emailController,
                               validator: (val){
                                 if(val!.isEmpty){
@@ -114,7 +107,7 @@ class SignUpPage extends  ConsumerWidget {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.white),
+                              
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
@@ -134,8 +127,10 @@ class SignUpPage extends  ConsumerWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
+                              
                               top: 10, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
+                              style: TextStyle(color: Colors.black),
                               validator: (val){
                                 if(val!.isEmpty){
                                   return 'password is required';
@@ -165,8 +160,8 @@ class SignUpPage extends  ConsumerWidget {
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
-                                foregroundColor: Colors.black
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white
                             ),
                             onPressed: () {
                               _form.currentState!.save();
@@ -192,7 +187,7 @@ class SignUpPage extends  ConsumerWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Already have an account'),
+                            Text('Already have an account',style: TextStyle(color: Colors.black)),
                             TextButton(onPressed: (){
                               // _form.currentState!.reset();
                               Get.back();
